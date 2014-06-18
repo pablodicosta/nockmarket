@@ -41,8 +41,18 @@ function submitRandomOrder() {
 
 var app = express.createServer();
 
+app.configure(function() {
+	app.set('views', __dirname + '/views');
+	app.set('view engine', 'ejs');
+	app.use(express.static(__dirname + '/public'));
+});
+
+app.set('view options', {
+	layout : false
+});
+
 app.get('/', function(req, res) {
-	res.send('Hello world!');
+	res.render('chart');
 });
 
 app.get('/api/trades', function(req, res) {
