@@ -3,7 +3,8 @@
 var exch = require('./lib/exchange'),
 	nocklib = require('./lib/nocklib'),
 	db = require('./lib/db'),
-	express = require('express');
+	express = require('express'),
+	nockroutes = require('./routes/nockroutes');
 
 var exchangeData = {},
 	timeFloor = 500,
@@ -51,9 +52,7 @@ app.set('view options', {
 	layout : false
 });
 
-app.get('/', function(req, res) {
-	res.render('chart');
-});
+app.get('/', nockroutes.getIndex);
 
 app.get('/api/trades', function(req, res) {
 	db.find('transactions',
