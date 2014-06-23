@@ -65,5 +65,9 @@ module.exports = {
 				res.send(price);
 			});
 		}
+	},
+
+	portfolio : function(req, res) {
+		res.render('portfolio');
 	}
 }
