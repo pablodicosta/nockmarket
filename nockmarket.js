@@ -64,6 +64,8 @@ app.post('/login', nockroutes.login);
 
 app.post('/signup', nockroutes.signup);
 
+app.post('/add-stock', nockroutes.addStock);
+
 db.open(function() {
 	submitRandomOrder();
 	app.listen(3000);
