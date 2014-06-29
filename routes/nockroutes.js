@@ -68,6 +68,17 @@ module.exports = {
 	},
 
 	portfolio : function(req, res) {
-		res.render('portfolio');
+		nocklib.getUserById(req.session._id, function(err, user) {
+
+			var portfolio = [];
+
+			if(user && user.portfolio) {
+				portfolio = user.portfolio;
+			}
+
+			nocklib.getStockPrices(portfolio, function(err, prices) {
+				res.render('portfolio', { portfolio : portfolio, prices : prices });
+			});
+		});
 	}
 }

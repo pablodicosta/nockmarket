@@ -68,8 +68,13 @@ app.post('/add-stock', nockroutes.addStock);
 
 app.get('/portfolio', nockroutes.portfolio);
 
-db.open(function() {
-	submitRandomOrder();
-	app.listen(3000);
+db.open(function(err) {
+	if(!err) {
+		submitRandomOrder();
+		app.listen(3000);
+	} else {
+		console.error("Error connecting to database - ", err);
+	}
+
 });
 
