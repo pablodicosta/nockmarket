@@ -57,5 +57,28 @@ module.exports = {
 				res.redirect('/');
 			}
 		});
+	},
+
+	addStock : function(req, res) {
+		if(req.xhr) {
+			nocklib.addStock(req.session._id, req.body.stock, function(err, price) {
+				res.send(price);
+			});
+		}
+	},
+
+	portfolio : function(req, res) {
+		nocklib.getUserById(req.session._id, function(err, user) {
+
+			var portfolio = [];
+
+			if(user && user.portfolio) {
+				portfolio = user.portfolio;
+			}
+
+			nocklib.getStockPrices(portfolio, function(err, prices) {
+				res.render('portfolio', { portfolio : portfolio, prices : prices });
+			});
+		});
 	}
 }

@@ -64,8 +64,17 @@ app.post('/login', nockroutes.login);
 
 app.post('/signup', nockroutes.signup);
 
-db.open(function() {
-	submitRandomOrder();
-	app.listen(3000);
+app.post('/add-stock', nockroutes.addStock);
+
+app.get('/portfolio', nocklib.ensureAuthenticated, nockroutes.portfolio);
+
+db.open(function(err) {
+	if(!err) {
+		submitRandomOrder();
+		app.listen(3000);
+	} else {
+		console.error("Error connecting to database - ", err);
+	}
+
 });
 
