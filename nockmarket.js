@@ -66,7 +66,7 @@ app.post('/signup', nockroutes.signup);
 
 app.post('/add-stock', nockroutes.addStock);
 
-app.get('/portfolio', nockroutes.portfolio);
+app.get('/portfolio', nocklib.ensureAuthenticated, nockroutes.portfolio);
 
 db.open(function(err) {
 	if(!err) {
