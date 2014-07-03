@@ -44,7 +44,7 @@ var app = express.createServer();
 app.configure(function() {
 	app.use(express.bodyParser());
 	app.use(express.cookieParser());
-	app.use(express.session({ secret : 'secretpassword' }));
+	app.use(express.session({ secret : 'secretpassword', store: nocklib.getSessionStore() }));
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'ejs');
 	app.use(express.static(__dirname + '/public'));
@@ -70,6 +70,7 @@ app.get('/portfolio', nocklib.ensureAuthenticated, nockroutes.portfolio);
 
 db.open(function(err) {
 	if(!err) {
+		nocklib.createSocket(app);
 		submitRandomOrder();
 		app.listen(3000);
 	} else {
