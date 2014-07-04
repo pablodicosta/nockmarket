@@ -52,6 +52,7 @@ module.exports = {
 		nocklib.authenticate(req.body.username, req.body.password, function(err, id) {
 			if(id) {
 				req.session._id = id;
+				req.session.username = req.body.username;
 				res.redirect('/portfolio');
 			} else {
 				res.redirect('/');
