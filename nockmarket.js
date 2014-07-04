@@ -73,6 +73,7 @@ db.open(function(err) {
 		nocklib.createSocket(app);
 		submitRandomOrder();
 		app.listen(3000);
+		console.info("Application started...");
 	} else {
 		console.error("Error connecting to database - ", err);
 	}

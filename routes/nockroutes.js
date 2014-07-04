@@ -33,7 +33,7 @@ module.exports = {
 
 	signup : function(req, res) {
 		nocklib.createUser(req.body.username, req.body.email, req.body.password, function(err, user) {
-			console.log('Created user - ', user);
+			console.info('Created user - ', user);
 			res.redirect('/portfolio');
 		});
 	},
@@ -54,6 +54,7 @@ module.exports = {
 				req.session._id = id;
 				req.session.username = req.body.username;
 				res.redirect('/portfolio');
+				console.info('Logged - ', req.body.username);
 			} else {
 				res.redirect('/');
 			}
