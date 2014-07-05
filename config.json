@@ -1,6 +1,6 @@
 {
 	"proxy" : {
-		"enabled" : true,
+		"enabled" : false,
 		"host" : "10.210.8.100",
 		"port" : 8080
 	}
