@@ -79,7 +79,11 @@ module.exports = {
 			}
 
 			nocklib.getStockPrices(portfolio, function(err, prices) {
-				res.render('portfolio', { portfolio : portfolio, prices : prices });
+				res.render('portfolio', {
+					portfolio : portfolio,
+					prices : prices,
+					email : user.email
+				});
 			});
 		});
 	}
