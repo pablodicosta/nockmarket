@@ -12,6 +12,8 @@
 		<script type="text/javascript" src="http://spbooks.github.com/nodejs1/bootstrap-modal.js"></script>
 		<script type="text/javascript" src="http://spbooks.github.com/nodejs1/bootstrap-transition.js"></script>
 		<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+		<script type="text/javascript" src="http://backbonejs.org/backbone-min.js"></script>
 		<script type="text/javascript" src="/js/portfolio.js"></script>
 		<script type="text/javascript" src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
 		<script type="text/javascript" src="/js/chat.js"></script>
@@ -75,7 +77,40 @@
 								</table>
 							</div>
 							<div class="tab-pane" id="tab2">
-								<p>Howdy, I'm in Section 2.</p>
+								<table class="table table-bordered table-condensed">
+									<thead>
+										<tr>
+											<th>Stock</th>
+											<th>BID5</th>
+											<th>BID4</th>
+											<th>BID3</th>
+											<th>BID2</th>
+											<th>BID1</th>
+											<th>Trade</th>
+											<th>ASK1</th>
+											<th>ASK2</th>
+											<th>ASK3</th>
+											<th>ASK4</th>
+											<th>ASK5</th>
+										</tr>
+										<tr>
+											<td><span class="badge badge-inverse">NOCK1</span></td>
+											<td><a class="btn btn-primary btn-mini"><strong>20.4</strong><br/>2004</a></td>
+											<td><a class="btn btn-primary btn-mini"><strong>20.9</strong><br/>1932</a></td>
+											<td><a class="btn btn-primary btn-mini"><strong>21.2</strong><br/>429</a></td>
+											<td><a class="btn btn-primary btn-mini"><strong>22.0</strong><br/>6244</a></td>
+											<td><a class="btn btn-primary btn-mini"><strong>22.5</strong><br/>397</a></td>
+											<td><a class="btn btn-success btn-mini"><strong>23.2</strong><br/>142</a></td>
+											<td><a class="btn btn-danger btn-mini"><strong>23.5</strong><br/>4286</a></td>
+											<td><a class="btn btn-danger btn-mini"><strong>23.9</strong><br/>1972</a></td>
+											<td><a class="btn btn-danger btn-mini"><strong>24.4</strong><br/>942</a></td>
+											<td><a class="btn btn-danger btn-mini"><strong>24.9</strong><br/>896</a></td>
+											<td><a class="btn btn-danger btn-mini"><strong>25.1</strong><br/>325</a></td>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
 							</div>
 							<div class="tab-pane" id="tab3">
 								<div class="container">

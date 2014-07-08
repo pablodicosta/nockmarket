@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
 	$('#add-stock').click(function(e) {
 		$.ajax({
 			type : 'POST',
@@ -8,4 +9,16 @@ $(document).ready(function() {
 			$('.stock-list').append('<tr><td>' + $('#stock').val() + '</td><td>' + price + '</td></tr>');
 		});
 	});
+
+	var PortfolioView = Backbone.View.extend({
+		initialize : function() {
+			this.render();
+		},
+		render : function() {
+			$('.stock-list').html('<tr><td>1</td><td>2</td></tr>');
+		}
+	});
+
+	new PortfolioView();
+
 });
