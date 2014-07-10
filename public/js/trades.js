@@ -1,3 +1,3 @@
 socket.on('trade', function(data) {
-	console.log(data);
+	//console.log(data);
 });

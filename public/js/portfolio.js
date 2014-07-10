@@ -10,12 +10,43 @@ $(document).ready(function() {
 		});
 	});
 
+	var PortfolioModel = Backbone.Model.extend({
+
+	});
+
+	var PortfolioCollection = Backbone.Collection.extend({
+		model : PortfolioModel,
+		url : '/portfolio'
+	});
+
 	var PortfolioView = Backbone.View.extend({
 		initialize : function() {
-			this.render();
+			var self = this;
+			window.portfolioCollection = new PortfolioCollection();
+			window.portfolioCollection.fetch({
+				success : function() {
+					self.render();
+				},
+				error : function() {
+					console.log('Error fetching data for portfolio');
+				}
+			});
 		},
 		render : function() {
-			$('.stock-list').html('<tr><td>1</td><td>2</td></tr>');
+			for (var i = 0; i < window.portfolioCollection.models.length; i++) {
+				var data = window.portfolioCollection.models[i];
+				var rowView = new RowView({ model : data });
+				$('.stock-list').append(rowView.render().el);
+			};
+		}
+	});
+
+	var RowView = Backbone.View.extend({
+		tagName : 'tr',
+		render : function() {
+			var template = _.template('<td><%= stock %></td><td><%= price %></td>');
+			$(this.el).html(template(this.model.toJSON()));
+			return this;
 		}
 	});
 

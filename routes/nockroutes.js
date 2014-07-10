@@ -82,7 +82,7 @@ module.exports = {
 				if(req.xhr) {
 					var data = [];
 					for (var i = 0; i < portfolio.length; i++) {
-						data.push({ stock : portfolio[i], prices : prices[i] });
+						data.push({ stock : portfolio[i], price : prices[i] });
 					}
 					res.json(data);
 				} else {
