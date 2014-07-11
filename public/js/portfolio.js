@@ -11,7 +11,12 @@ $(document).ready(function() {
 	});
 
 	var PortfolioModel = Backbone.Model.extend({
-
+		defaults : {
+			visible : true
+		},
+		setVisible : function(visible) {
+			this.set({ visible : visible });
+		}
 	});
 
 	var PortfolioCollection = Backbone.Collection.extend({
@@ -20,6 +25,25 @@ $(document).ready(function() {
 	});
 
 	var PortfolioView = Backbone.View.extend({
+
+		el : 'body',
+
+		events : {
+			'click .add-filter' : 'filter'
+		},
+
+		filter : function() {
+			var filterString = $('#filter').val();
+			var data = window.portfolioCollection.models;
+			for (var i = 0; i < data.length; i++) {
+				if(data[i].toJSON().stock.toLowerCase().indexOf(filterString.toLowerCase()) == -1) {
+					data[i].setVisible(false);
+				} else {
+					data[i].setVisible(true);
+				}
+			};
+		},
+
 		initialize : function() {
 			var self = this;
 			window.portfolioCollection = new PortfolioCollection();
@@ -32,6 +56,7 @@ $(document).ready(function() {
 				}
 			});
 		},
+
 		render : function() {
 			for (var i = 0; i < window.portfolioCollection.models.length; i++) {
 				var data = window.portfolioCollection.models[i];
@@ -42,7 +67,22 @@ $(document).ready(function() {
 	});
 
 	var RowView = Backbone.View.extend({
+
 		tagName : 'tr',
+
+		initialize : function() {
+			_.bindAll(this, 'setVisibility');
+			this.model.bind('change', this.setVisibility);
+		},
+
+		setVisibility : function() {
+			if(!this.model.toJSON().visible) {
+				$(this.el).hide();
+			} else {
+				$(this.el).show();
+			}
+		},
+
 		render : function() {
 			var template = _.template('<td><%= stock %></td><td><%= price %></td>');
 			$(this.el).html(template(this.model.toJSON()));
