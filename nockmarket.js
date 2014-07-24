@@ -64,8 +64,23 @@ app.configure(function() {
 	app.use(express.static(__dirname + '/public'));
 });
 
+app.configure('development', function() {
+	app.use(express.errorHandler({
+		dumpExceptions : true,
+		showStack : true
+	}));
+});
+
+app.configure('production', function() {
+	app.use(express.errorHandler());
+});
+
 app.set('view options', {
 	layout : false
+});
+
+app.use(function(req, res) {
+	res.render('404');
 });
 
 app.get('/', nockroutes.getIndex);
