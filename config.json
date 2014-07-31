@@ -3,5 +3,12 @@
 		"enabled" : false,
 		"host" : "10.210.8.100",
 		"port" : 8080
+	},
+	"database" : {
+		"host" : "localhost",
+		"port" : 27017,
+		"authenticate" : false,
+		"user" : "",
+		"password" : ""
 	}
 }

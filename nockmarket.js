@@ -79,10 +79,6 @@ app.set('view options', {
 	layout : false
 });
 
-app.use(function(req, res) {
-	res.render('404');
-});
-
 app.get('/', nockroutes.getIndex);
 
 app.get('/api/trades', nockroutes.getTrades);
@@ -97,16 +93,22 @@ app.post('/add-stock', nockroutes.addStock);
 
 app.get('/portfolio', nocklib.ensureAuthenticated, nockroutes.portfolio);
 
+app.use(function(req, res) {
+	res.render('404');
+});
+
 db.open(function(err) {
 	if(!err) {
 		nocklib.createSocket(app);
 		for (var i = 0; i < stocks.length; i++) {
 			submitRandomOrder(i);
 		};
-		app.listen(3000);
+		var port = process.env.PORT || 3000;
+		app.listen(port);
 		console.info("Application started...");
 	} else {
 		console.error("Error connecting to database - ", err);
+		process.exit();
 	}
 
 });
