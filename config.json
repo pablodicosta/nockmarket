@@ -5,10 +5,10 @@
 		"port" : 8080
 	},
 	"database" : {
-		"host" : "localhost",
-		"port" : 27017,
-		"authenticate" : false,
-		"user" : "",
-		"password" : ""
+		"host" : "ds033679.mongolab.com",
+		"port" : 33679,
+		"authenticate" : true,
+		"user" : "pablodicosta",
+		"password" : "dedalo42"
 	}
 }
